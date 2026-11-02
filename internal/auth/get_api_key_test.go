@@ -9,7 +9,7 @@ import (
 func TestSuccessGetAPIKey(t *testing.T) {
 	header := http.Header{}
 	want := "jddjdjadlkjdoiwdoiwioeu987498489hdhiooioiooi90u09"
-	header.Set("Authorization", "ApiKey " + want)
+	header.Set("Authorization", "ApiKey "+want)
 	got, err := GetAPIKey(header)
 	if err != nil {
 		t.Fatalf("error : %v", err)
@@ -20,17 +20,16 @@ func TestSuccessGetAPIKey(t *testing.T) {
 	}
 }
 
-
 func TestFailGetAPIKey(t *testing.T) {
 	header := http.Header{}
 	want := "jddjdjadlkjdoiwdoiwioeu987498489hdhiooioiooi90u09"
 	Sended := "khdkhsdhsdshdksjhdksjdhksjdhjksdhkjsdhskdhskdhs"
-	header.Set("Authorization","ApiKey " + Sended)
+	header.Set("Authorization", "ApiKey "+Sended)
 	got, err := GetAPIKey(header)
 	if err != nil {
 		t.Fatalf("error : %v", err)
 	}
-	
+
 	if reflect.DeepEqual(want, got) {
 		t.Fatalf("expected: %v, got: %v", want, got)
 	}
@@ -69,4 +68,4 @@ func TestLowercaseScheme(t *testing.T) {
 	if err == nil {
 		t.Fatal("expected error for lowercase scheme, got nil")
 	}
-} 
+}
