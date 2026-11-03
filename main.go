@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -92,7 +93,7 @@ func main() {
 	srv := &http.Server{
 		Addr:              ":" + port,
 		Handler:           router,
-		ReadHeaderTimeout: 20,
+		ReadHeaderTimeout: 20 * time.Second,
 	}
 
 	portNum, err := strconv.Atoi(port)
